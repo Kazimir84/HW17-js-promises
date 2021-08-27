@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>        
+    <meta charset="utf-8">  
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Playfair+Display&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./style.css">
+    <title>HW17-js-promises</title>
+  </head>
+<body>		
+<div>HW17-js-promises</div>
+
+<div>
+  1. Создайте на вашем github репозиторий с именем HW17-js-promises. Все результаты нужно запушить в ваш репозиторий и прикрепить ссылку на hillel портале.<br>
+  2. Создайте index.html в котором подключите js script.<br>
+  3. Напишите функцию delay(ms), которая возвращает новый промис, переходящий в состояние "resolved" через ms миллисекунд.<br>
+  <br>
+  Пример использования:<br>
+  <br>
+  delay(1000).then(() => console.log("Hello!"))<br>
+  <br>
+  4. Необходимо организовать цепочку промисов. <br>
+    4.1 ​​Загрузить данные пользователя используем функцию getUserInfo.<br>
+    4.2 Затем получить ссылку на аватар пользователя, для этого нужно использовать функцию getUserAvatar. Данная функция расширит и вернет обьект пользователя.<br>
+    4.3 Затем получить дополнительную информацию по пользователю, для этого нужно использовать функцию getUserAdditionalInfo. Данная функция расширит и вернет обьект пользователя.<br>
+    4.4 В конце вывести в консоль финальную версию полученного обьекта.<br>
+    <br>
+    Функции getUserInfo, getUserAvatar, getUserAdditionalInfo возвращают промисы.<br>
+    <br>
+  function getUserInfo() {<br>
+      return new Promise(function(resolve, reject) {<br>
+        setTimeout(() => resolve({ name: 'Vic', age: 21, id: 1 } ), 1000);<br>
+      });<br>
+    }<br>
+    <br>
+    function getUserAvatar(userInfo) {<br>
+      return new Promise(function(resolve, reject) {<br>
+        userInfo.avatar = 'https://previews.123rf.com/images/stockgiu/stockgiu1708/stockgiu170802061/83728179-avatar-sketch-of-a-funny-man-s-haed-with-sunglasses-and-hairstyle-design.jpg'<br>
+        setTimeout(() => resolve(userInfo), 1000);<br>
+      });<br>
+    }<br>
+    function getUserAdditionalInfo(userInfo) {<br>
+      return new Promise(function(resolve, reject) {<br>
+        userInfo.interests = ['sport', 'books'];<br>
+        setTimeout(() => resolve(userInfo), 1000);<br>
+      });<br>
+    }<br>
+  5. Необходимо добавить обработку ошибок в следующий код. Ошибка должна быть выведена в консоль.<br>
+    new Promise(function(resolve, reject) {<br>
+      setTimeout(() => resolve({ name: 'Vic', age: 21, id: 1 } ), 1000);<br>
+    })<br>
+      .then(function(userInfo) {<br>
+        return new Promise(function(resolve, reject) {<br>
+          setTimeout(() => reject(new Error('wrong data') ), 1000);<br>
+        });<br>
+      })<br>
+  
+</div>
+
+  <script src="./main.js" defer></script>
+</body>
+</html>
